@@ -3,6 +3,8 @@
 class ExamplesController < OpenReadController
   before_action :set_example, only: %i[update destroy]
 
+  # update and destroy need authentication, gets that from OpenReadController
+
   # GET /examples
   # GET /examples.json
   def index
@@ -20,14 +22,17 @@ class ExamplesController < OpenReadController
   # POST /examples
   # POST /examples.json
   def create
+    # token looks  up current_user, used to build associated resource
+    # .build is the same as .new
     @example = current_user.examples.build(example_params)
-
+    # => example with user_id automatically filled
     if @example.save
       render json: @example, status: :created
     else
       render json: @example.errors, status: :unprocessable_entity
     end
   end
+  # render json sends data to Serializer
 
   # PATCH/PUT /examples/1
   # PATCH/PUT /examples/1.json
@@ -48,6 +53,8 @@ class ExamplesController < OpenReadController
   end
 
   def set_example
+    # only look up examples that belong to current user, params[:id]
+    # is called back at 'before_action'
     @example = current_user.examples.find(params[:id])
   end
 
