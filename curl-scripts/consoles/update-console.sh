@@ -3,7 +3,7 @@
 curl --include --request PATCH "http://localhost:4741/consoles/${ID}" \
   --header "Content-Type: application/json" \
   --data '{
-      "patient": {
+      "console": {
         "brand": "'"${BRAND}"'",
         "name": "'"${NAME}"'",
       }
