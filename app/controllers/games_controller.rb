@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # update controller security measure to need Authentication
-class GamesController < ProtectedController
+class GamesController < OpenReadController
   before_action :set_game, only: %i[update destroy]
 
   # GET /games
@@ -18,7 +18,7 @@ class GamesController < ProtectedController
 
   # POST /games
   def create
-    @game = current_user.games.new(game_params)
+    @game = current_user.games.build(game_params)
 
     if @game.save
       render json: @game, status: :created, location: @game
