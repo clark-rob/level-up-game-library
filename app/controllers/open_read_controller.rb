@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Inherit from this class to allow unauthenticate access to read actions
+# Inherit from this class to allow unauthenticate access to just read actions
 class OpenReadController < ProtectedController
   READ_ACTIONS = %i[index show].freeze
   skip_before_action :authenticate, only: READ_ACTIONS
