@@ -2,7 +2,8 @@
 
 # update controller security measure to need Authentication
 class GamesController < OpenReadController
-  before_action :set_game, only: %i[update destroy]
+  before_action :set_game, only: %i[show update destroy]
+  # runs set_game before show, update and destroy are ran
 
   # GET /games
   def index
