@@ -20,7 +20,9 @@ class GamesController < ProtectedController
   # GET /games/name
   #
   def search
-    render json: current_user.games.find_by(name: params[:name])
+    @game = current_user.games.find_by(name: params[:name]) # test
+
+    render json: @game
   end
 
   # POST /games
