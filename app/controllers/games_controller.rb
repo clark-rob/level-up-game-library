@@ -1,20 +1,28 @@
 # frozen_string_literal: true
 
 # update controller security measure to need Authentication
-class GamesController < OpenReadController
+class GamesController < ProtectedController
   before_action :set_game, only: %i[show update destroy]
   # runs set_game before show, update and destroy are ran
 
   # GET /games
   def index
-    @games = Game.all
+    @games = current_user.games
 
     render json: @games
   end
 
   # GET /games/1
   def show
-    render json: Game.find(params[:id])
+    render json: current_user.games.find(params[:id])
+  end
+
+  # GET /games/name
+  #
+  def search
+    @game = current_user.games.find_by(name: params[:name]) # test
+
+    render json: @game
   end
 
   # POST /games
@@ -46,7 +54,7 @@ class GamesController < OpenReadController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_game
-    @game = Game.find(params[:id])
+    @game = current_user.games.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
