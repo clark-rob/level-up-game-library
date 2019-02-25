@@ -21,6 +21,13 @@ bookcase or stored in an old shoe box.
 
 No more do you have to wonder what games you own. Level Up is here to help you level up your gaming organization. YEA!
 
+## Preparation
+1. Fork and Clone repository
+2. `git checkout -b <new-branch>` to create and enter a new git branch
+3. Run `bundle install` to begin dependencies installation
+4. To test run `bin/rails server` to use this back end server
+5. To test authorization or CRUD actions, use with the [level-up-client](https://github.com/clark-rob/level-up-client) front end repository
+
 ## Repo URL's
 - Front-end: https://github.com/clark-rob/level-up-client
 - Back-end: https://github.com/clark-rob/level-up-game-library
